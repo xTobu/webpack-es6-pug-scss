@@ -1,0 +1,20 @@
+//- layout.pug
+doctype html
+html
+    head
+        meta(charset='UTF-8')
+        link(rel='icon' type="image/x-icon" href='/favicon.ico')
+
+        block title
+
+        include ./styles.pug
+        block scss
+
+        include ./scripts.pug
+        block js
+
+    body
+        include ./header.pug
+        include ./nav.pug
+        include ./main.pug
+        include ./footer.pug

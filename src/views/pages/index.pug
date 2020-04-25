@@ -1,0 +1,17 @@
+extends ../includes/_layout.pug
+
+block title
+    title index
+
+block scss
+    link(rel='stylesheet', href='/assets/styles/index.css')
+
+block js
+    script(src='/assets/js/index.bundle.js' defer)
+
+block main
+    div#appIndex
+        p {{message}}
+    p.index_p #{greet}, #{index.msg}
+    img(src="/assets/images/sample.svg", alt="")
+
