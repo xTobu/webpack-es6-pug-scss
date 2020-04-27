@@ -8,7 +8,7 @@ const buildWebpackConfig = merge(baseWebpackConfig, {
         path: PATHS.out,
     },
     optimization: {
-        // minimize: true, // minimize all entries: html, js, css
+      minimize: true, // minimize js
     },
 });
 

@@ -55,19 +55,32 @@ var config = {
                     {
                         loader: 'css-loader',
                         options: {
-                            url: false, // bundle 時忽略 css 內的 url()
+                            url: false, // bundle ignore css url()
                         },
                     },
-                    'sass-loader',
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            sassOptions: {
+                                outputStyle: 'expanded', // min css
+                            },
+                        },
+                    },
                 ],
             },
             {
                 test: /\.pug$/,
                 use: [
-                    'html-loader',
+                    {
+                        loader: 'html-loader',
+                        options: {
+                            minimize: false, // 不壓縮 HTML
+                        },
+                    },
                     {
                         loader: 'pug-html-loader',
                         options: {
+                            pretty: true, // 美化 HTML 的編排 (不壓縮HTML的一種)
                             data: { ...PUG_LOCALS }, // set of data to pass to the pug render.
                         },
                     },
@@ -95,7 +108,6 @@ var config = {
         }),
         new MiniCssExtractPlugin({
             filename: `assets/styles/[name].css`,
-            url: false,
         }),
         new CopyWebpackPlugin([
             {
@@ -115,6 +127,9 @@ var config = {
                     template: `${PAGES_DIR}/${page}`,
                     filename: `./${page.replace(/\.pug/, '.html')}`,
                     inject: false,
+                    minify: {
+                        collapseWhitespace: false,
+                    },
                 })
         ),
     ],
